@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import Spinner from "../spinner/Spinner.jsx";
 
 export default function Home() {
     const [featuredBlog, setFeaturedBlog] = useState(null);
     const [sideBlogs, setSideBlogs] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const controller = new AbortController();
@@ -14,7 +16,7 @@ export default function Home() {
             .then(result => {
                 const resultBlogs = Object.values(result);
 
-                resultBlogs.sort((a, b) => b._createdOn || 0 - a._createdOn || 0);
+                resultBlogs.sort((a, b) => (b._createdOn || 0) - (a._createdOn || 0));
 
                 setFeaturedBlog(resultBlogs[0]);
 
@@ -24,17 +26,20 @@ export default function Home() {
                     .slice(0, 3);
 
                 setSideBlogs(randomBlogs);
+                setLoading(false);
             })
             .catch(err => {
                 if (err.name !== 'AbortError') {
                     alert(err.message);
+                    setLoading(false);
                 }
+
             });
 
         return () => controller.abort();
     }, [])
 
-    if (!featuredBlog) return null;
+    if (loading) return <Spinner size={48} color="#22c55e" />
 
     return (
         <section className="w-full bg-gray-900 text-white py-6 min-h-[80.8vh]">
