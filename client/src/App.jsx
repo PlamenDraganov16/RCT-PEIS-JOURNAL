@@ -3,6 +3,7 @@ import Footer from "./components/footer/Footer.jsx"
 import Header from "./components/header/Header.jsx"
 import Landing from "./components/Landing-Page/Landing.jsx"
 import About from "./components/about/about.jsx"
+import Home from "./components/home/Home.jsx"
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
 
             <Routes>
                 {/* <Route path="/" element={<Landing />} /> */}
+                <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
             </Routes>
 
