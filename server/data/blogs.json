@@ -7,7 +7,7 @@
     "date": "2025-11-19",
     "tags": ["AI", "technology", "future"],
     "content": "Artificial Intelligence is becoming increasingly prevalent in our daily lives, from smart assistants to automated systems...",
-    "imageUrl": "/images/ai-future.png",
+    "imageUrl": "/images/1.jpg",
     "_createdOn": 1762128000000
   },
   "6f8a1b2c-4d5e-6f7a-8b9c-0d1e2f3a4b5c": {
@@ -18,7 +18,7 @@
     "date": "2025-11-18",
     "tags": ["health", "wellness", "lifestyle"],
     "content": "Living a healthy lifestyle doesn't have to be hard. Start by incorporating these 10 simple tips into your daily routine...",
-    "imageUrl": "/images/healthy-tips.png",
+    "imageUrl": "/images/2.jpg",
     "_createdOn": 1762041600000
   },
   "7a9b2c3d-5e6f-7a8b-9c0d-1e2f3a4b5c6d": {
@@ -29,7 +29,7 @@
     "date": "2025-10-25",
     "tags": ["space", "science", "astronomy"],
     "content": "Space exploration has fascinated humans for centuries. With new telescopes and missions, we are uncovering more mysteries of the cosmos...",
-    "imageUrl": "/images/space-wonders.png",
+    "imageUrl": "/images/3.jpg",
     "_createdOn": 1760937600000
   },
   "8b0c3d4e-6f7a-8b9c-0d1e-2f3a4b5c6d7e": {
@@ -40,7 +40,7 @@
     "date": "2025-11-01",
     "tags": ["cooking", "food", "recipes"],
     "content": "Cooking is both an art and a science. Learning techniques, experimenting with flavors, and understanding ingredients can elevate your dishes...",
-    "imageUrl": "/images/cooking-art.png",
+    "imageUrl": "/images/4.jpg",
     "_createdOn": 1761206400000
   },
   "9c1d4e5f-7g8h-9i0j-1k2l-3m4n5o6p7q8r": {
@@ -51,7 +51,7 @@
     "date": "2025-10-30",
     "tags": ["psychology", "happiness", "self-help"],
     "content": "Happiness is influenced by a combination of genetics, environment, and personal choices. Understanding these factors can help cultivate a more fulfilling life...",
-    "imageUrl": "/images/psychology-happiness.png",
+    "imageUrl": "/images/5.jpg",
     "_createdOn": 1761033600000
   },
   "0d2e5f6g-8h9i-0j1k-2l3m-4n5o6p7q8r9s": {
@@ -62,7 +62,7 @@
     "date": "2025-11-10",
     "tags": ["sustainability", "environment", "lifestyle"],
     "content": "Sustainable living involves making choices that reduce your environmental impact. Small changes in daily habits can make a big difference...",
-    "imageUrl": "/images/sustainable-living.png",
+    "imageUrl": "/images/6.jpg",
     "_createdOn": 1761648000000
   }
 }
