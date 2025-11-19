@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Spinner from "../spinner/Spinner.jsx";
+import BlogCard from "../blog-card/BlogCard.jsx";
 
 export default function Home() {
     const [featuredBlog, setFeaturedBlog] = useState(null);
@@ -69,36 +70,7 @@ export default function Home() {
                 </div>
 
                 <div className="flex flex-col space-y-3">
-                    {sideBlogs.map((b) => (
-                        <div
-                            key={b._id}
-                            className="bg-gray-800 rounded-xl shadow-md flex overflow-hidden"
-                        >
-                            <img
-                                src={b.imageUrl}
-                                alt={b.title}
-                                className="w-32 lg:w-36 object-cover aspect-[4/3]"
-                            />
-
-                            <div className="p-3 flex flex-col flex-grow">
-                                <h2 className="text-lg lg:text-xl font-semibold leading-tight">
-                                    {b.title}
-                                </h2>
-
-                                <p className="text-gray-400 text-xs mt-0.5">
-                                    {b.author} • {b.date}
-                                </p>
-
-                                <p className="text-gray-300 text-sm mt-1 flex-grow">
-                                    {b.content.substring(0, 80)}...
-                                </p>
-
-                                <button className="mt-2 w-fit px-3 py-1.5 bg-green-500 hover:bg-green-600 rounded-lg text-xs lg:text-sm font-semibold transition">
-                                    Read More
-                                </button>
-                            </div>
-                        </div>
-                    ))}
+                    {sideBlogs.map((blog) => (<BlogCard key={blog._id} {...blog} />))}
                 </div>
 
             </div>
