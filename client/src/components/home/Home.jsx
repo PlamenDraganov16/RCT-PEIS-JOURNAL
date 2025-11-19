@@ -5,12 +5,16 @@ export default function Home() {
     const [sideBlogs, setSideBlogs] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3030/jsonstore/blogs')
+        const controller = new AbortController();
+
+        fetch('http://localhost:3030/jsonstore/blogs', {
+            signal: controller.signal
+        })
             .then(response => response.json())
             .then(result => {
                 const resultBlogs = Object.values(result);
 
-                resultBlogs.sort((a, b) => b._createdOn - a._createdOn);
+                resultBlogs.sort((a, b) => b._createdOn || 0 - a._createdOn || 0);
 
                 setFeaturedBlog(resultBlogs[0]);
 
@@ -21,8 +25,13 @@ export default function Home() {
 
                 setSideBlogs(randomBlogs);
             })
-            .catch(err => alert(err.message));
+            .catch(err => {
+                if (err.name !== 'AbortError') {
+                    alert(err.message);
+                }
+            });
 
+        return () => controller.abort();
     }, [])
 
     if (!featuredBlog) return null;
