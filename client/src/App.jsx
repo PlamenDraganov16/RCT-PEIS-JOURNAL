@@ -4,6 +4,7 @@ import Header from "./components/header/Header.jsx"
 import About from "./components/about/about.jsx"
 import Home from "./components/home/Home.jsx"
 import Feed from "./components/feed/Feed.jsx"
+import Details from "./components/details/Details.jsx"
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/feed" element={<Feed />} />
+                <Route path="/feed/:blogId/details" element={<Details />} />
             </Routes>
 
             <Footer />

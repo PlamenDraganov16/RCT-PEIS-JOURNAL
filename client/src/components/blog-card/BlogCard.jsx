@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function BlogCard({
     _id,
     title,
@@ -29,9 +31,12 @@ export default function BlogCard({
                     {content.substring(0, 80)}...
                 </p>
 
-                <button className="mt-2 w-fit px-3 py-1.5 bg-green-500 hover:bg-green-600 rounded-lg text-xs lg:text-sm font-semibold transition">
+                <Link
+                    to={`/feed/${_id}/details`}
+                    className="mt-3 w-fit px-4 py-2 bg-green-500 hover:bg-green-600 rounded-lg font-semibold transition text-sm"
+                >
                     Read More
-                </button>
+                </Link>
             </div>
         </div>
     )

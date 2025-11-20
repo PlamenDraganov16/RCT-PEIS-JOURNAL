@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Spinner from "../spinner/Spinner.jsx";
 import BlogCard from "../blog-card/BlogCard.jsx";
+import { Link } from "react-router";
 
 export default function Home() {
     const [featuredBlog, setFeaturedBlog] = useState(null);
@@ -63,9 +64,12 @@ export default function Home() {
                             {featuredBlog.content.substring(0, 150)}...
                         </p>
 
-                        <button className="mt-3 w-fit px-4 py-2 bg-green-500 hover:bg-green-600 rounded-lg font-semibold transition text-sm">
+                        <Link
+                            to={`/feed/${featuredBlog._id}/details`}
+                            className="mt-3 w-fit px-4 py-2 bg-green-500 hover:bg-green-600 rounded-lg font-semibold transition text-sm"
+                        >
                             Read More
-                        </button>
+                        </Link>
                     </div>
                 </div>
 
