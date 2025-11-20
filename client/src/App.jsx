@@ -3,6 +3,7 @@ import Footer from "./components/footer/Footer.jsx"
 import Header from "./components/header/Header.jsx"
 import About from "./components/about/about.jsx"
 import Home from "./components/home/Home.jsx"
+import Feed from "./components/feed/Feed.jsx"
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
                 {/* <Route path="/" element={<Landing />} /> */}
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/feed" element={<Feed />} />
             </Routes>
 
             <Footer />

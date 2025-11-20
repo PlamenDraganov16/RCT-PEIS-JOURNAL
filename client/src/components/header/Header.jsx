@@ -9,7 +9,7 @@ export default function Header() {
         </Link>
 
         <nav className="flex items-center space-x-6 text-sm">
-          <Link to="/blogs" className="hover:text-white transition">Blogs</Link>
+          <Link to="/feed" className="hover:text-white transition">Blogs</Link>
           <Link to="/add-blog" className="hover:text-white transition">Add Blog</Link>
           <Link to="/profile" className="hover:text-white transition">Profile</Link>
           <Link to="/login" className="hover:text-white transition">Login</Link>
