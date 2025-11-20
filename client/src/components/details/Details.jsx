@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router"
+import DetailsCard from "../details-card/DetailsCard.jsx";
 
 export default function Details() {
     const { blogId } = useParams();
@@ -45,39 +46,7 @@ export default function Details() {
         <section className="w-full bg-gray-900 text-white py-10 min-h-[80vh]">
             <div className="w-full lg:w-[80%] mx-auto flex flex-col gap-6">
 
-                {/* Blog Image */}
-                <div className="w-full rounded-xl overflow-hidden shadow-xl">
-                    <img
-                        src={blog.imageUrl}
-                        alt={blog.title}
-                        className="w-full h-64 lg:h-96 object-cover"
-                    />
-                </div>
-
-                <div className="bg-gray-800 rounded-xl p-6 shadow-lg flex flex-col gap-4">
-                    <h1 className="text-3xl lg:text-4xl font-bold">{blog.title}</h1>
-
-                    <p className="text-gray-400 text-sm">
-                        {blog.author} • {blog.date}
-                    </p>
-
-                    <p className="text-gray-300 text-base leading-relaxed whitespace-pre-line">
-                        {blog.content}
-                    </p>
-
-                    {blog.tags && (
-                        <div className="flex flex-wrap gap-2 pt-2">
-                            {blog.tags.map(tag => (
-                                <span
-                                    key={tag}
-                                    className="px-3 py-1 bg-gray-700 text-gray-300 rounded-lg text-xs"
-                                >
-                                    #{tag}
-                                </span>
-                            ))}
-                        </div>
-                    )}
-                </div>
+                <DetailsCard {...blog} />
 
                 <div className="flex gap-3">
                     <Link
