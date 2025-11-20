@@ -30,7 +30,7 @@ export default function Details() {
         if (!isConfirmed) return;
 
         try {
-            await fetch(`http://localhost:3030/jsonstore/games/${gameId}`, {
+            await fetch(`http://localhost:3030/jsonstore/blogs/${blogId}`, {
                 method: 'DELETE',
             });
 
