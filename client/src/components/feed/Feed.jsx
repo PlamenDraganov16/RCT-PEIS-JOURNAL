@@ -8,13 +8,8 @@ export default function Feed() {
     const pageSize = 6;
 
     // Get page from URL query, default to 1
-    let pageFromUrl = parseInt(searchParams.get("page")) || 1;
+    const pageFromUrl = parseInt(searchParams.get("page")) || 1;
     const [currentPage, setCurrentPage] = useState(pageFromUrl);
-
-    useEffect(() => {
-    const page = parseInt(searchParams.get("page")) || 1;
-    setCurrentPage(page);
-}, [searchParams]);
 
     useEffect(() => {
         const controller = new AbortController();
@@ -44,6 +39,11 @@ export default function Feed() {
     useEffect(() => {
         setSearchParams({ page: currentPage });
     }, [currentPage]);
+
+    useEffect(() => {
+        const page = parseInt(searchParams.get("page")) || 1;
+        setCurrentPage(page);
+    }, [searchParams]);
 
     const totalPages = Math.ceil(blogs.length / pageSize);
     const startIndex = (currentPage - 1) * pageSize;
