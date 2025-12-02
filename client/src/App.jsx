@@ -9,6 +9,7 @@ import LandingPage from "./components/landing-page/LandingPage.jsx"
 import UserContext from "./contexts/UserContext.jsx"
 
 import { useContext } from "react"
+import Register from "./components/register/Register.jsx"
 
 function App() {
     const { user } = useContext(UserContext);
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/feed" element={<Feed />} />
                 <Route path="/feed/:blogId/details" element={<Details />} />
+                <Route path="/register" element={<Register />} />
             </Routes>
 
             <Footer />
