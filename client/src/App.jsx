@@ -10,6 +10,7 @@ import UserContext from "./contexts/UserContext.jsx"
 
 import { useContext } from "react"
 import Register from "./components/register/Register.jsx"
+import Logout from "./components/logout/Logout.jsx"
 
 function App() {
     const { user } = useContext(UserContext);
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/feed" element={<Feed />} />
                 <Route path="/feed/:blogId/details" element={<Details />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/logout" element={<Logout />} />
             </Routes>
 
             <Footer />
