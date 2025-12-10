@@ -6,26 +6,26 @@ import Home from "./components/home/Home.jsx"
 import Feed from "./components/feed/Feed.jsx"
 import Details from "./components/details/Details.jsx"
 import LandingPage from "./components/landing-page/LandingPage.jsx"
-import UserContext from "./contexts/UserContext.jsx"
-
-import { useContext } from "react"
 import Register from "./components/register/Register.jsx"
 import Logout from "./components/logout/Logout.jsx"
 import Login from "./components/login/Login.jsx"
+import Edit from "./components/edit/Edit.jsx"
+import Create from "./components/create/Create.jsx"
 
 function App() {
-    const { user } = useContext(UserContext);
 
     return (
         <>
             <Header />
 
             <Routes>
-                <Route path="/landing" element={<LandingPage />} />
+                <Route path="/welcome" element={<LandingPage />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/feed" element={<Feed />} />
+                <Route path="/add-blog" element={<Create />} />
                 <Route path="/feed/:blogId/details" element={<Details />} />
+                <Route path="/feed/:blogId/edit" element={<Edit />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/logout" element={<Logout />} />
