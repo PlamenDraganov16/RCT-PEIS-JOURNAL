@@ -1,0 +1,159 @@
+import { useNavigate } from "react-router";
+import useForm from "../../hooks/useForm";
+import useRequest from "../../hooks/useRequest";
+import { useEffect, useState } from "react";
+import { useUserContext } from "../../contexts/UserContext.jsx";
+
+export default function Create() {
+    const navigate = useNavigate();
+    const { request } = useRequest();
+    const [errors, setErrors] = useState({});
+    const { isAuthenticated } = useUserContext();
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate('/welcome', { replace: true });
+        }
+    }, [isAuthenticated, navigate]);
+
+    const createBlogHandler = async (values) => {
+        let newErrors = {};
+
+        if (!values.title.trim()) newErrors.title = "Title is required";
+        if (!values.author.trim()) newErrors.author = "Author is required";
+        if (!values.date) newErrors.date = "Publish date is required";
+        if (!values.tags.trim()) newErrors.tags = "At least one tag is required";
+        if (!values.imageUrl.trim()) newErrors.imageUrl = "Image URL is required";
+        if (!values.content.trim()) newErrors.content = "Content is required";
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+        }
+
+        setErrors({});
+
+        const data = {
+            ...values,
+            tags: values.tags.split(",").map(tag => tag.trim()),
+        };
+
+        try {
+            await request("/data/blogs", "POST", data);
+            navigate("/feed");
+        } catch (err) {
+            setErrors({ submit: err.message || "Failed to create blog" });
+        }
+    };
+
+    const { register, formAction } = useForm(createBlogHandler, {
+        title: "",
+        author: "",
+        date: "",
+        tags: "",
+        imageUrl: "",
+        content: "",
+    });
+
+    return (
+        <section className="bg-gray-900 text-white py-16 px-4">
+            <div className="max-w-4xl mx-auto">
+
+                <h1 className="text-4xl font-bold text-center mb-8">Create New Blog</h1>
+
+                <form
+                    className="bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-lg space-y-6"
+                    action={formAction}
+                >
+                    {/* Title */}
+                    <div className="flex flex-col">
+                        <label htmlFor="title" className="text-lg font-semibold mb-2">Title</label>
+                        <input
+                            type="text"
+                            id="title"
+                            {...register("title")}
+                            placeholder="Enter blog title..."
+                            className="p-3 rounded-lg bg-gray-700 text-white outline-none"
+                        />
+                        {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title}</p>}
+                    </div>
+
+                    {/* Author */}
+                    <div className="flex flex-col">
+                        <label htmlFor="author" className="text-lg font-semibold mb-2">Author</label>
+                        <input
+                            type="text"
+                            id="author"
+                            {...register("author")}
+                            placeholder="Enter author name..."
+                            className="p-3 rounded-lg bg-gray-700 text-white outline-none"
+                        />
+                        {errors.author && <p className="text-red-500 text-sm mt-1">{errors.author}</p>}
+                    </div>
+
+                    {/* Publish Date */}
+                    <div className="flex flex-col">
+                        <label htmlFor="date" className="text-lg font-semibold mb-2">Publish Date</label>
+                        <input
+                            type="date"
+                            id="date"
+                            {...register("date")}
+                            className="p-3 rounded-lg bg-gray-700 text-white outline-none"
+                        />
+                        {errors.date && <p className="text-red-500 text-sm mt-1">{errors.date}</p>}
+                    </div>
+
+                    {/* Tags */}
+                    <div className="flex flex-col">
+                        <label htmlFor="tags" className="text-lg font-semibold mb-2">Tags (comma separated)</label>
+                        <input
+                            type="text"
+                            id="tags"
+                            {...register("tags")}
+                            placeholder="health, nutrition, wellness"
+                            className="p-3 rounded-lg bg-gray-700 text-white outline-none"
+                        />
+                        {errors.tags && <p className="text-red-500 text-sm mt-1">{errors.tags}</p>}
+                    </div>
+
+                    {/* Image URL */}
+                    <div className="flex flex-col">
+                        <label htmlFor="imageUrl" className="text-lg font-semibold mb-2">Image URL</label>
+                        <input
+                            type="text"
+                            id="imageUrl"
+                            {...register("imageUrl")}
+                            placeholder="Enter image URL..."
+                            className="p-3 rounded-lg bg-gray-700 text-white outline-none"
+                        />
+                        {errors.imageUrl && <p className="text-red-500 text-sm mt-1">{errors.imageUrl}</p>}
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex flex-col">
+                        <label htmlFor="content" className="text-lg font-semibold mb-2">Content</label>
+                        <textarea
+                            id="content"
+                            {...register("content")}
+                            rows="6"
+                            placeholder="Write your blog content here..."
+                            className="p-3 rounded-lg bg-gray-700 text-white outline-none resize-none"
+                        ></textarea>
+                        {errors.content && <p className="text-red-500 text-sm mt-1">{errors.content}</p>}
+                    </div>
+
+                    {/* Submission Error */}
+                    {errors.submit && <p className="text-red-500 text-sm">{errors.submit}</p>}
+
+                    {/* Submit Button */}
+                    <button
+                        type="submit"
+                        className="w-full py-3 bg-blue-600 hover:bg-blue-700 transition rounded-lg font-semibold shadow-md"
+                    >
+                        Create Blog
+                    </button>
+                </form>
+            </div>
+        </section>
+    );
+}
