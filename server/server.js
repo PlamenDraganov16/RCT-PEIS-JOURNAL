@@ -1333,51 +1333,124 @@
         }
     };
     var seedData = {
-        
-        games: {
-           "5c7d8f0e-3a9b-4c2d-9e1f-6a4b3c8d2e7a": {
-            "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-            "title": "The Witcher 3",
-            "genre": "Open World",
-            "players": 32000,
-            "date": "2015-05-19",
-            "imageUrl": "/images/witcher.png",
-            "summary": "A story-driven, open world fantasy RPG. Play as Geralt of Rivia, a monster slayer for hire, who must find the Child of Prophecy in a vast, war-torn world. The game is known for its morally gray choices, mature storyline, and expansive world exploration.",
-            "_createdOn": 1617194350000
-        },
-        "7b9a2c4f-1d5e-4b6c-8a3d-2f1e0g3h4i5j": {
-            "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-            "title": "Elden Ring",
-            "genre": "Action RPG",
-            "players": 105000,
-            "date": "2022-02-25",
-            "imageUrl": "/images/elden ring.png",
-            "summary": "A monumental fantasy action RPG developed by FromSoftware and Bandai Namco. Set in the Lands Between, players embark on an epic quest to become the Elden Lord, exploring a vast open world designed by Hidetaka Miyazaki, with worldbuilding contributed by fantasy author George R. R. Martin.",
-            "_createdOn": 1645708800000
-        },
-        "3d4e5f6g-7h8i-9j0k-1l2m-3n4o5p6q7r8s": {
-            "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-            "title": "Minecraft",
-            "genre": "Sandbox",
-            "players": 1400000,
-            "date": "2011-11-18",
-            "imageUrl": "/images/minecraft.png",
-            "summary": "Minecraft is a sandbox video game where players explore a blocky, procedurally generated 3D world with infinite terrain. Players may discover and extract raw materials, craft tools and items, and build structures, earthworks and simple machines.",
-            "_createdOn": 1617194450000
-        },
-        "9f8e7d6c-5b4a-3c2d-1e0f-9g8h7i6j5k4l": {
-            "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-            "title": "Cyberpunk 2077",
-            "genre": "Action RPG",
-            "players": 85000,
-            "date": "2020-12-10",
-            "imageUrl": "/images/cyberpunk.png",
-            "summary": "An open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour and body modification. You play as V, a mercenary outlaw going after a one-of-a-kind implant that is the key to immortality.",
-            "_createdOn": 1607558400000
+
+        blogs: {
+            "5c7d8f0e-3a9b-4c2d-9e1f-6a4b3c8d2e7a": {
+                "_id": "5c7d8f0e-3a9b-4c2d-9e1f-6a4b3c8d2e7a",
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                "title": "The Rise of AI in Everyday Life",
+                "author": "Jane Doe",
+                "date": "2025-11-19",
+                "tags": ["AI", "technology", "future"],
+                "content": "Artificial Intelligence is becoming increasingly prevalent in our daily lives, from smart assistants to automated systems...",
+                "imageUrl": "/images/1.jpg",
+                "_createdOn": 1762128000000
+            },
+            "6f8a1b2c-4d5e-6f7a-8b9c-0d1e2f3a4b5c": {
+                "_id": "6f8a1b2c-4d5e-6f7a-8b9c-0d1e2f3a4b5c",
+                "_ownerId": "46d72e87-9263-5737-9823-ffc07492cfb9",
+                "title": "10 Tips for a Healthier Lifestyle",
+                "author": "John Smith",
+                "date": "2025-11-18",
+                "tags": ["health", "wellness", "lifestyle"],
+                "content": "Living a healthy lifestyle doesn't have to be hard. Start by incorporating these 10 simple tips into your daily routine...",
+                "imageUrl": "/images/2.jpg",
+                "_createdOn": 1762041600000
+            },
+            "7a9b2c3d-5e6f-7a8b-9c0d-1e2f3a4b5c6d": {
+                "_id": "7a9b2c3d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                "_ownerId": "57e83f98-0374-6848-1934-ffd08503dfc0",
+                "title": "Exploring the Wonders of Space",
+                "author": "Alice Johnson",
+                "date": "2025-10-25",
+                "tags": ["space", "science", "astronomy"],
+                "content": "Space exploration has fascinated humans for centuries. With new telescopes and missions, we are uncovering more mysteries of the cosmos...",
+                "imageUrl": "/images/3.jpg",
+                "_createdOn": 1760937600000
+            },
+            "8b0c3d4e-6f7a-8b9c-0d1e-2f3a4b5c6d7e": {
+                "_id": "8b0c3d4e-6f7a-8b9c-0d1e-2f3a4b5c6d7e",
+                "_ownerId": "68f94g09-1485-7959-2045-gge19614egd1",
+                "title": "Mastering the Art of Cooking",
+                "author": "Michael Brown",
+                "date": "2025-11-01",
+                "tags": ["cooking", "food", "recipes"],
+                "content": "Cooking is both an art and a science. Learning techniques, experimenting with flavors, and understanding ingredients can elevate your dishes...",
+                "imageUrl": "/images/4.jpg",
+                "_createdOn": 1761206400000
+            },
+            "9c1d4e5f-7g8h-9i0j-1k2l-3m4n5o6p7q8r": {
+                "_id": "9c1d4e5f-7g8h-9i0j-1k2l-3m4n5o6p7q8r",
+                "_ownerId": "79g05h10-2596-8060-3156-hhf20725fhe2",
+                "title": "The Psychology of Happiness",
+                "author": "Emma Wilson",
+                "date": "2025-10-30",
+                "tags": ["psychology", "happiness", "self-help"],
+                "content": "Happiness is influenced by a combination of genetics, environment, and personal choices. Understanding these factors can help cultivate a more fulfilling life...",
+                "imageUrl": "/images/5.jpg",
+                "_createdOn": 1761033600000
+            },
+            "0d2e5f6g-8h9i-0j1k-2l3m-4n5o6p7q8r9s": {
+                "_id": "0d2e5f6g-8h9i-0j1k-2l3m-4n5o6p7q8r9s",
+                "_ownerId": "80h16i21-3607-9171-4267-iig31836gfi3",
+                "title": "Sustainable Living: Tips and Tricks",
+                "author": "Lucas Green",
+                "date": "2025-11-10",
+                "tags": ["sustainability", "environment", "lifestyle"],
+                "content": "Sustainable living involves making choices that reduce your environmental impact. Small changes in daily habits can make a big difference...",
+                "imageUrl": "/images/6.jpg",
+                "_createdOn": 1761648000000
+            },
+            "1a2b3c4d-5e6f-7g8h-9i0j-k1l2m3n4o5p6": {
+                "_id": "1a2b3c4d-5e6f-7g8h-9i0j-k1l2m3n4o5p6",
+                "_ownerId": "80h16i21-3607-9171-4267-iig31836gfi3",
+                "title": "The Rise of AI in Everyday Life",
+                "author": "Maria Thompson",
+                "date": "2025-11-14",
+                "tags": ["technology", "AI", "future"],
+                "content": "Artificial intelligence is becoming deeply integrated into our daily routines. From smart assistants to automated workflows, AI enhances convenience and efficiency...",
+                "imageUrl": "/images/7.jpg",
+                "_createdOn": 1761993600000
+            },
+
+            "7x8y9z0a-1b2c-3d4e-5f6g-h7i8j9k0l1m2": {
+                "_id": "7x8y9z0a-1b2c-3d4e-5f6g-h7i8j9k0l1m2",
+                "_ownerId": "80h16i21-3607-9171-4267-iig31836gfi3",
+                "title": "Mastering Personal Finance at Any Age",
+                "author": "Evelyn Carter",
+                "date": "2025-11-18",
+                "tags": ["finance", "budgeting", "self-improvement"],
+                "content": "Learning to manage personal finances is one of the best investments you can make. Whether you're a student or nearing retirement, financial literacy builds freedom...",
+                "imageUrl": "/images/8.jpg",
+                "_createdOn": 1762339200000
+            },
+
+            "p0q1r2s3-t4u5-v6w7-x8y9-z0a1b2c3d4e5": {
+                "_id": "p0q1r2s3-t4u5-v6w7-x8y9-z0a1b2c3d4e5",
+                "_ownerId": "80h16i21-3607-9171-4267-iig31836gfi3",
+                "title": "Exploring the Hidden Gems of Europe",
+                "author": "Olivia Bennett",
+                "date": "2025-11-05",
+                "tags": ["travel", "adventure", "culture"],
+                "content": "Europe is filled with lesser-known destinations that offer stunning landscapes, rich history, and welcoming locals. These hidden gems provide an authentic travel experience...",
+                "imageUrl": "/images/9.jpg",
+                "_createdOn": 1761475200000
+            },
+
+            "f6g7h8i9-j0k1-l2m3-n4o5-p6q7r8s9t0u1": {
+                "_id": "f6g7h8i9-j0k1-l2m3-n4o5-p6q7r8s9t0u1",
+                "_ownerId": "80h16i21-3607-9171-4267-iig31836gfi3",
+                "title": "Healthy Eating Made Simple",
+                "author": "Daniel Rivera",
+                "date": "2025-11-22",
+                "tags": ["health", "nutrition", "wellness"],
+                "content": "Healthy eating doesn't have to be complicated. With a few simple strategies, anyone can create balanced meals, boost energy, and maintain long-term wellness...",
+                "imageUrl": "/images/10.jpg",
+                "_createdOn": 1762684800000
             }
         },
         comments: {
-        
+
         }
     };
     var rules$1 = {
