@@ -1,41 +1,44 @@
 import { createContext, useContext, useState } from "react";
-import useRequest from "../hooks/useRequest.js";
+import useRequest from "../hooks/useRequest";
+import usePersistedState from "../hooks/usePersistedState";
 
 const UserContext = createContext({
     isAuthenticated: false,
-
     user: {
         email: '',
         password: '',
         _createdOn: 0,
         _id: '',
-        accessToken: '',
+        accessToken: ''
     },
+    registerHandler() { },
     loginHandler() { },
     logoutHandler() { },
-    registerHandler() { },
-})
+});
 
 export function UserProvider({
     children,
 }) {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = usePersistedState(null);
     const { request } = useRequest();
 
     const registerHandler = async (email, password) => {
         const newUser = { email, password };
 
-        //register api call
+        // Register API call 
         const result = await request('/users/register', 'POST', newUser);
 
-        // login user after register
+        // Login user after register
         setUser(result);
-    }
+    };
 
     const loginHandler = async (email, password) => {
-        const result = await request('/users/login', 'POST', { email, password })
+        const result = await request('/users/login', 'POST', { email, password });
+
+        console.log(result);
+
         setUser(result);
-    }
+    };
 
     const logoutHandler = () => {
         return request('/users/logout', 'GET', null, { accessToken: user.accessToken })
@@ -45,10 +48,11 @@ export function UserProvider({
     const userContextValues = {
         user,
         isAuthenticated: !!user?.accessToken,
+        registerHandler,
         loginHandler,
         logoutHandler,
-        registerHandler
-    }
+    };
+
     return (
         <UserContext.Provider value={userContextValues}>
             {children}
