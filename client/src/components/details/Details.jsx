@@ -37,7 +37,7 @@ export default function Details() {
         }
     });
 
-    const deleteGameHandler = async () => {
+    const deleteBlogHandler = async () => {
         const isConfirmed = confirm(`Are you sure you want to delete game: ${blog.title}`);
 
         if (!isConfirmed) {
@@ -77,21 +77,6 @@ export default function Details() {
                     </div>
 
                     {/* Edit/Delete Buttons */}
-                    {/* <div className="flex gap-3">
-                        <Link
-                            to={`/feed/${blogId}/edit`}
-                            className="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold text-sm transition"
-                        >
-                            Edit
-                        </Link>
-
-                        <button
-                            onClick={deleteGameHandler}
-                            className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition text-sm shadow-md"
-                        >
-                            Delete
-                        </button>
-                    </div> */}
                     {isOwner && (
                         <div className="flex gap-3">
                             <Link
@@ -102,7 +87,7 @@ export default function Details() {
                             </Link>
 
                             <button
-                                onClick={deleteGameHandler}
+                                onClick={deleteBlogHandler}
                                 className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition text-sm shadow-md"
                             >
                                 Delete

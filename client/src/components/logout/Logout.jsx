@@ -1,11 +1,19 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router";
-import UserContext from "../../contexts/UserContext.jsx";
+import UserContext, { useUserContext } from "../../contexts/UserContext.jsx";
 import { useEffect } from "react";
 
 export default function Logout() {
   const { logoutHandler } = useContext(UserContext);
   const navigate = useNavigate();
+
+  const { isAuthenticated } = useUserContext();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/welcome', { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
 
   useEffect(() => {
     const logout = async () => {

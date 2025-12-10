@@ -11,6 +11,7 @@ import Logout from "./components/logout/Logout.jsx"
 import Login from "./components/login/Login.jsx"
 import Edit from "./components/edit/Edit.jsx"
 import Create from "./components/create/Create.jsx"
+import Profile from "./components/profile/Profile.jsx"
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/logout" element={<Logout />} />
+                <Route path="/profile" element={<Profile />} />
             </Routes>
 
             <Footer />

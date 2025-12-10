@@ -12,6 +12,7 @@ export default function CreateComment({
     const { blogId } = useParams();
     const { request } = useRequest();
     const [error, setError] = useState(null);
+    const [values, setValues] = useState('');
 
     const submitHandler = async ({ comment }) => {
         if (!comment || !comment.trim()) {
