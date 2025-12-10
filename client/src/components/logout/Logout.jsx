@@ -6,28 +6,26 @@ import { useEffect } from "react";
 export default function Logout() {
   const { logoutHandler } = useContext(UserContext);
   const navigate = useNavigate();
-
   const { isAuthenticated } = useUserContext();
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      navigate('/welcome', { replace: true });
-    }
-  }, [isAuthenticated, navigate]);
+    const performLogout = async () => {
+      if (!isAuthenticated) {
+        navigate('/welcome', { replace: true });
+        return;
+      }
 
-  useEffect(() => {
-    const logout = async () => {
       try {
         await logoutHandler();
-        navigate('/');
+        navigate('/welcome', { replace: true });
       } catch (err) {
         alert('Problem with logout');
-        navigate('/');
+        navigate('/welcome', { replace: true });
       }
     };
 
-    logout();
-  }, [logoutHandler, navigate]);
+    performLogout();
+  }, [isAuthenticated, logoutHandler, navigate]);
 
   return null;
 }

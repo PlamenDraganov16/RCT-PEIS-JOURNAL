@@ -25,7 +25,7 @@ export function UserProvider({
     const registerHandler = async (email, password) => {
         const newUser = { email, password };
 
-        // Register API call 
+        // Register 
         const result = await request('/users/register', 'POST', newUser);
 
         // Login user after register
@@ -35,13 +35,11 @@ export function UserProvider({
     const loginHandler = async (email, password) => {
         const result = await request('/users/login', 'POST', { email, password });
 
-        console.log(result);
-
         setUser(result);
     };
 
-    const logoutHandler = () => {
-        return request('/users/logout', 'GET', null, { accessToken: user.accessToken })
+    const logoutHandler = async () => {
+        return await request('/users/logout', 'GET', null, { accessToken: user.accessToken })
             .finally(() => setUser(null));
     };
 

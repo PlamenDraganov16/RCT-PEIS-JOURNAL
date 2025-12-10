@@ -21,7 +21,7 @@ export default function Login() {
     const { email, password } = values;
     let newErrors = {};
 
-    if (!email.trim()) newErrors.email = 'Email is required';
+    if (!email.trim()) newErrors.email = 'Email is required or invalid';
     if (!password) newErrors.password = 'Password is required';
 
     if (Object.keys(newErrors).length > 0) {
@@ -36,7 +36,7 @@ export default function Login() {
       await loginHandler(email, password);
       navigate('/');
     } catch (err) {
-      setErrors({ submit: err.message || 'Login failed' });
+      setErrors({ submit: err.message || 'Wrong email or password' });
     } finally {
       setSubmitting(false);
     }
