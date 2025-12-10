@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import useForm from "../../hooks/useForm.js";
-import { useUserContext } from "../../contexts/UserContext.jsx";
-import Spinner from "../spinner/Spinner.jsx";
+import UserContext, { useUserContext } from "../../contexts/UserContext.jsx";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { loginHandler } = useUserContext();
+  const { loginHandler } = useContext(UserContext);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
+
+  const { isAuthenticated } = useUserContext();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/', { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
 
   const loginSubmitHandler = async (values) => {
     const { email, password } = values;
@@ -74,7 +81,7 @@ export default function Login() {
           disabled={submitting}
           className={`w-full flex justify-center items-center gap-2 px-4 py-2 rounded-lg font-semibold transition ${submitting ? 'bg-green-400/60 cursor-not-allowed' : 'bg-green-500 hover:bg-green-600'}`}
         >
-          {submitting ? <Spinner size={20} color="#fff" /> : 'Login'}
+          {submitting ? 'Loading...' : 'Login'}
         </button>
       </form>
     </section>
