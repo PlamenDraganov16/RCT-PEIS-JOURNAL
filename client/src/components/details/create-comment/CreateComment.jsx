@@ -12,7 +12,6 @@ export default function CreateComment({
     const { blogId } = useParams();
     const { request } = useRequest();
     const [error, setError] = useState(null);
-    const [values, setValues] = useState('');
 
     const submitHandler = async ({ comment }) => {
         if (!comment || !comment.trim()) {
@@ -34,8 +33,8 @@ export default function CreateComment({
             const createdComment = await request('/data/comments', 'POST', data);
 
             onCreateEnd(createdComment);
-            setValues({ comment: '' });
 
+            setValues(v => ({ ...v, comment: '' }));
         } catch (err) {
             setError(err.message || "Failed to create comment");
         }
@@ -44,6 +43,7 @@ export default function CreateComment({
     const {
         register,
         formAction,
+        setValues,
     } = useForm(submitHandler, {
         comment: '',
     })

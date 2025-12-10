@@ -12,6 +12,7 @@ import Login from "./components/login/Login.jsx"
 import Edit from "./components/edit/Edit.jsx"
 import Create from "./components/create/Create.jsx"
 import Profile from "./components/profile/Profile.jsx"
+import NotFound from "./components/404/NotFound.jsx"
 
 function App() {
 
@@ -31,6 +32,8 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/profile" element={<Profile />} />
+
+                <Route path="/*" element={<NotFound />} />
             </Routes>
 
             <Footer />

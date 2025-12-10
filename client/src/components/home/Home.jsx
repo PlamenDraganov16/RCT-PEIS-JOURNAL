@@ -15,7 +15,7 @@ export default function Home() {
     }, [isAuthenticated, navigate]);
 
     const { data: lastBlogs = [] } = useRequest(
-        `/data/blogs?sortBy=_createdOn%20desc&pageSize=4`,
+        `/data/blogs?sortBy=_createdOn%20desc`,
         []
     );
 
@@ -25,7 +25,11 @@ export default function Home() {
         </div>
     );
 
-    const [featuredBlog, ...sideBlogs] = lastBlogs;
+    const featuredBlog = lastBlogs[0];
+
+    const shuffledSideBlogs = [...lastBlogs.slice(1)]
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 3);
 
     return (
         <section className="w-full bg-gray-900 text-white py-6 min-h-[80.8vh]">
@@ -58,7 +62,7 @@ export default function Home() {
                 </div>
 
                 <div className="flex flex-col space-y-3">
-                    {sideBlogs.map((blog) => (<BlogCard key={blog._id} {...blog} />))}
+                    {shuffledSideBlogs.map((blog) => (<BlogCard key={blog._id} {...blog} />))}
                 </div>
 
             </div>
