@@ -1,47 +1,31 @@
-import { useEffect, useState } from "react";
-import Spinner from "../spinner/Spinner.jsx";
 import BlogCard from "../blog-card/BlogCard.jsx";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import useRequest from "../../hooks/useRequest.js";
+import { useUserContext } from "../../contexts/UserContext.jsx";
+import { useEffect } from "react";
 
 export default function Home() {
-    const [featuredBlog, setFeaturedBlog] = useState(null);
-    const [sideBlogs, setSideBlogs] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+    const { isAuthenticated } = useUserContext();
 
     useEffect(() => {
-        const controller = new AbortController();
+        if (!isAuthenticated) {
+            navigate('/welcome', { replace: true });
+        }
+    }, [isAuthenticated, navigate]);
 
-        fetch('http://localhost:3030/jsonstore/blogs', {
-            signal: controller.signal
-        })
-            .then(response => response.json())
-            .then(result => {
-                const resultBlogs = Object.values(result);
+    const { data: lastBlogs = [] } = useRequest(
+        `/data/blogs?sortBy=_createdOn%20desc&pageSize=4`,
+        []
+    );
 
-                resultBlogs.sort((a, b) => (b._createdOn || 0) - (a._createdOn || 0));
+    if (!lastBlogs.length) return (
+        <div className="text-gray-300 text-center mt-6">
+            No blogs available.
+        </div>
+    );
 
-                setFeaturedBlog(resultBlogs[0]);
-
-                const randomBlogs = resultBlogs
-                    .filter(blog => blog._id !== resultBlogs[0]._id)
-                    .sort(() => Math.random() - 0.5)
-                    .slice(0, 3);
-
-                setSideBlogs(randomBlogs);
-                setLoading(false);
-            })
-            .catch(err => {
-                if (err.name !== 'AbortError') {
-                    alert(err.message);
-                    setLoading(false);
-                }
-
-            });
-
-        return () => controller.abort();
-    }, [])
-
-    if (loading) return <Spinner size={48} color="#22c55e" />
+    const [featuredBlog, ...sideBlogs] = lastBlogs;
 
     return (
         <section className="w-full bg-gray-900 text-white py-6 min-h-[80.8vh]">
@@ -49,23 +33,23 @@ export default function Home() {
 
                 <div className="lg:col-span-2 bg-gray-800 rounded-xl shadow-lg overflow-hidden flex flex-col">
                     <img
-                        src={featuredBlog.imageUrl}
-                        alt={featuredBlog.title}
+                        src={featuredBlog?.imageUrl}
+                        alt={featuredBlog?.title}
                         className="w-full h-56 lg:h-64 object-cover"
                     />
 
                     <div className="p-4 flex flex-col flex-grow">
                         <h1 className="text-2xl lg:text-3xl font-bold mb-1">{featuredBlog.title}</h1>
                         <p className="text-gray-400 text-xs lg:text-sm mb-2">
-                            {featuredBlog.author} • {featuredBlog.date}
+                            {featuredBlog?.author} • {featuredBlog?.date}
                         </p>
 
                         <p className="text-gray-300 flex-grow text-sm lg:text-base leading-snug">
-                            {featuredBlog.content.substring(0, 150)}...
+                            {featuredBlog?.content.substring(0, 150)}...
                         </p>
 
                         <Link
-                            to={`/feed/${featuredBlog._id}/details`}
+                            to={`/feed/${featuredBlog?._id}/details`}
                             className="mt-3 w-fit px-4 py-2 bg-green-500 hover:bg-green-600 rounded-lg font-semibold transition text-sm"
                         >
                             Read More

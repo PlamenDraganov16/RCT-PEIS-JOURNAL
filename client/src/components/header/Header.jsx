@@ -12,10 +12,9 @@ export default function Header() {
         </Link>
 
         <nav className="flex items-center space-x-6 text-sm">
-          <Link to="/feed" className="hover:text-white transition">Blogs</Link>
-
           {isAuthenticated ? (
             <>
+              <Link to="/feed" className="hover:text-white transition">Blogs</Link>
               <Link to="/add-blog" className="hover:text-white transition">Add Blog</Link>
               <Link to="/profile" className="hover:text-white transition">Profile</Link>
               <Link to="/logout" className="hover:text-white transition">Logout</Link>

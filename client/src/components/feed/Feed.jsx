@@ -1,41 +1,18 @@
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router";
 import BlogCard from "../blog-card/BlogCard.jsx";
-
 import useRequest from "../../hooks/useRequest.js";
+import { useNavigate } from "react-router";
+import { useUserContext } from "../../contexts/UserContext.jsx";
+import { useEffect } from "react";
 
 export default function Feed() {
-    // const [blogs, setAllBlogs] = useState([]);
-    const [searchParams, setSearchParams] = useSearchParams();
-    const pageSize = 6;
+    const navigate = useNavigate();
+    const { isAuthenticated } = useUserContext();
 
-    // Get page from URL query, default to 1
-    const pageFromUrl = parseInt(searchParams.get("page")) || 1;
-    const [currentPage, setCurrentPage] = useState(pageFromUrl);
-
-    // useEffect(() => {
-    //     const controller = new AbortController();
-
-    //     fetch('http://localhost:3030/jsonstore/blogs', {
-    //         signal: controller.signal
-    //     })
-    //         .then(response => response.json())
-    //         .then(result => {
-    //             const resultBlogs = Object.values(result);
-
-    //             resultBlogs.sort((a, b) => (b._createdOn || 0) - (a._createdOn || 0));
-
-    //             setAllBlogs(resultBlogs);
-    //         })
-    //         .catch(err => {
-    //             if (err.name !== 'AbortError') {
-    //                 alert(err.message);
-    //             }
-
-    //         });
-
-    //     return () => controller.abort();
-    // }, [])
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate('/welcome', { replace: true });
+        }
+    }, [isAuthenticated, navigate]);
 
     const { data: blogs } = useRequest('/data/blogs', []);
 
