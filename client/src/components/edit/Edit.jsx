@@ -57,9 +57,15 @@ export default function Edit() {
     });
 
     useEffect(() => {
+        if (!user) return;
+
         request(`/data/blogs/${blogId}`)
             .then(result => {
-                if (result.ownerId !== user._id) {
+
+                const ownerId = result._ownerId ?? result.ownerId;
+                const isOwner = ownerId?.toString() === user._id?.toString();
+
+                if (!isOwner) {
                     navigate('/', { replace: true });
                     return;
                 }
